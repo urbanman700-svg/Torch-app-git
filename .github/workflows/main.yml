@@ -1,4 +1,4 @@
-name: Android Build
+ name: Android Build
 
 on:
   push:
@@ -16,17 +16,17 @@ jobs:
       - name: Setup Java 11
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
+          distribution: 'temurin'
           java-version: '11'
 
-      - name: Make gradlew executable
+      - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: TorchApp-Debug-APK
+          name: TorchApp-Debug
           path: app/build/outputs/apk/debug/app-debug.apk
